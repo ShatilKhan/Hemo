@@ -2,7 +2,7 @@ import streamlit as st
 from langchain.llms import OpenAI
 from langchain import PromptTemplate
 
-st.set_page_config(page_title="💉 AI Blood Donation Expert")
+st.set_page_config(page_title="💉 Hemo")
 st.title('💉 AI Blood Donation Expert')
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
