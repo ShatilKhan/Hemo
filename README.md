@@ -20,4 +20,4 @@ Hemo has the follwoing features:
 ![image](https://github.com/ShatilKhan/Hemo/assets/52494840/31bf9b26-a706-4a67-98a4-6d99884570f1)
 
 
-### **`Currenlty Hemo's Code enables it to chat with blood donors , I am working on adding the ability to predict blood donation patterns & analyze blood donor data`**
+### **`Currently Hemo can generate Pairplot from Blood Transfusion CSV data to predict Blood Donation Patterns.I'm currently working on adding the nearby blood donation center feature & automatic suggestion feature for different blood types`**
