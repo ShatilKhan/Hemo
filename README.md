@@ -1,3 +1,5 @@
+![Modern Logo for Blood Donation, cool, AI-type (1)](https://github.com/ShatilKhan/Hemo/assets/52494840/6f3953f4-4596-41b4-aed9-8dfc2aae1ed7)
+
 # Hemo🩸
 *"A single drop of blood can make a huge difference."* 🩸  
 Hemo is an AI Chatbot that helps Blood Donors learn more about Blood Donation &amp; predict Blood Donation Patterns.
