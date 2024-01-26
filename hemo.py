@@ -34,8 +34,13 @@ if uploaded_file is not None:
     # Read the CSV file
     df = pd.read_csv(uploaded_file)
 
+    # Set style and color palette
+    sns.set_style('whitegrid')
+    sns.set_palette('Set2')
+
     # Create a pairplot
-    pairplot = sns.pairplot(df)
+    pairplot = sns.pairplot(df, height=2.5)
 
     # Display the pairplot
     st.pyplot(pairplot.fig)
+    
