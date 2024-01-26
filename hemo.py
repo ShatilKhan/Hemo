@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from langchain.llms import OpenAI
 from langchain import PromptTemplate
+import seaborn as sns
 
 st.set_page_config(page_title="💉 Hemo")
 st.title('💉 Hemo')
@@ -30,17 +31,11 @@ with st.form('myform'):
 uploaded_file = st.sidebar.file_uploader("Choose a CSV file", type="csv")
 
 if uploaded_file is not None:
-  # Read the CSV file
-  df = pd.read_csv(uploaded_file)
-  # Select box for x-axis
-  x_axis = st.selectbox('Select column for x-axis:', df.columns)
-  # Select box for y-axis
-  y_axis = st.selectbox('Select column for y-axis:', df.columns)
-  # Generate the graph
-  plt.figure(figsize=(10, 6))
-  plt.plot(df[x_axis], df[y_axis])
-  plt.xlabel(x_axis)
-  plt.ylabel(y_axis)
-  plt.title(f'{y_axis} vs {x_axis}')
-  # Display the graph
-  st.pyplot(plt)
+    # Read the CSV file
+    df = pd.read_csv(uploaded_file)
+
+    # Create a pairplot
+    pairplot = sns.pairplot(df)
+
+    # Display the pairplot
+    st.pyplot(pairplot.fig)
