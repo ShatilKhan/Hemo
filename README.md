@@ -1,4 +1,5 @@
-![Modern Logo for Blood Donation, cool, AI-type (1)](https://github.com/ShatilKhan/Hemo/assets/52494840/6f3953f4-4596-41b4-aed9-8dfc2aae1ed7)
+![Hemo](https://github.com/ShatilKhan/Hemo/assets/52494840/0ec6a69e-6c42-41c3-b520-443ef132d507)
+
 
 # Hemo🩸
 *"A single drop of blood can make a huge difference."* 🩸  
