@@ -29,6 +29,7 @@ Link to Model on Hugging Face: https:[//huggingface.co/impira/layoutlm-document-
 
 It can only answer from a very clear pdf without watermark & all. Since most medical reports contain some form of WaterMark. We may need to use a more advance Open Source LLM. How ever installing & configuring larger Open Source LLMs takes a lot of time & internet speed. None of which I have at the moment. So currently I'll supply some sample Blood Test formats that users can use to test.
 The goal is to automatically suggest the user about how & when they can donate blood based on their health report.
+***Note: most of all , using a smaller Open Source LLM makes the deployment process much easier & also uses less energy, hence also reducing CO2 emissions.***
 
 # Demo Video
 
