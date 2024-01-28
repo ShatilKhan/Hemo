@@ -24,7 +24,7 @@ Hemo has the follwoing features:
 ## Medical Report Chat
 Upload your Medical Report & Chat with it to understand & be informed as a blood donor. It's not perfect as I'm using an Open Source LLM at the moment  
 Model: `impira/layoutlm-document-qa`  
-type: `question-answering`  
+type: `document-question-answering`  
 Link to Model on Hugging Face: https:[//huggingface.co/impira/layoutlm-document-qa](https://huggingface.co/impira/layoutlm-document-qa)
 
 It can only answer from a very clear pdf without watermark & all. Since most medical reports contain some form of WaterMark. We may need to use a more advance Open Source LLM. How ever installing & configuring larger Open Source LLMs takes a lot of time & internet speed. None of which I have at the moment. So currently I'll supply some sample Blood Test formats that users can use to test.
