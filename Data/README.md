@@ -9,8 +9,8 @@ Attribute Information
 Recency - months since last donation  
 Frequency - total number of donation  
 Monetary - total blood donated in c.c.  
-Time - months since first donation), and a binary variable representing whether he/she donated blood in March 2007 (1 stand for donating blood; 0 stands for not donating blood).  
-Class - The target attribute is a binary variable representing whether he/she donated blood in March 2007 (2 stands for donating blood; 1 stands for not donating blood).
+Time - months since first donation, and a binary variable representing whether he/she donated blood in March 2007 (1 stand for donating blood; 0 stands for not donating blood).  
+Class - The target attribute is a binary variable representing whether he/she donated blood in March 2007.
 
 ## Citation
 
