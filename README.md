@@ -42,11 +42,15 @@ I'm planning on using a fully open-source model instead of OpenAI because I'm la
 
 # Local Setup
 
-1.Install all the requirements
-``` pip install -r requirements.txt```
+1.Install all the requirements  
+```bash
+pip install -r requirements.txt
+```
 
-2.Run the Web App
-``` streamlit run hemo.py```
+2.Run the Web App   
+```bash
+streamlit run hemo.py
+```
 
 ***Note*** ***: You will need Teseract-OCR & Pytorch installed on your device.***
 
