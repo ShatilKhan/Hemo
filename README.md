@@ -38,6 +38,14 @@ https://github.com/ShatilKhan/Hemo/assets/52494840/886d656f-2afd-4a3c-8ba1-9c637
 
 I'm planning on using a fully open-source model instead of OpenAI because I'm lazy & don't want to create an API key everytime I rune the app, plus I don't have any credits left :)
 
+# Local Setup
 
+1.Install all the requirements
+``` pip install -r requirements.txt```
+
+2.Run the Web App
+``` streamlit run hemo.py```
+
+***Note*** ***: You will need Teseract-OCR & Pytorch installed on your device.***
 
 ### **`Currently Hemo can generate Pairplot from Blood Transfusion CSV data to predict Blood Donation Patterns.I'm currently working on adding the nearby blood donation center feature & automatic suggestion feature for different blood types`**
