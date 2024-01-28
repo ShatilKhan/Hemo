@@ -19,6 +19,17 @@ Hemo has the follwoing features:
 # Sustainable Development Goals
 ![image](https://github.com/ShatilKhan/Hemo/assets/52494840/31bf9b26-a706-4a67-98a4-6d99884570f1)
 
+# Features
+
+## Medical Report Chat
+Upload your Medical Report & Chat with it to understand & be informed as a blood donor. It's not perfect as I'm using an Open Source LLM at the moment  
+Model: `impira/layoutlm-document-qa`  
+type: `question-answering`  
+Link to Model on Hugging Face: https:[//huggingface.co/impira/layoutlm-document-qa](https://huggingface.co/impira/layoutlm-document-qa)
+
+It can only answer from a very clear pdf without watermark & all. Since most medical reports contain some form of WaterMark. We may need to use a more advance Open Source LLM. How ever installing & configuring larger Open Source LLMs takes a lot of time & internet speed. None of which I have at the moment. So currently I'll supply some sample Blood Test formats that users can use to test.
+The goal is to automatically suggest the user about how & when they can donate blood based on their health report.
+
 # Demo Video
 
 Check out the Video of how the web app creates a beautiful Pairplot & calculates the percentage of people who did not donate blood:
