@@ -9,3 +9,4 @@ transformers==4.37.1
 pytesseract
 Pillow==8.3.2
 PyPDF2
+torch
