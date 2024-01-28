@@ -5,28 +5,43 @@ import matplotlib.pyplot as plt
 from langchain import PromptTemplate
 import seaborn as sns
 from transformers import pipeline
+import pytesseract
+from PIL import Image
+
+# Set the path to the Tesseract OCR executable
+pytesseract.pytesseract.tesseract_cmd = r'C:\msys64\mingw64\bin\tesseract.exe' 
 
 st.set_page_config(page_title="💉 Hemo")
 st.title('💉 Hemo')
 
+# CSV file uploader in sidebar
+uploaded_file = st.sidebar.file_uploader("Upload Blood Donor Dataset", type="csv")
 
-# def generate_response(bloodType):
-    # Initialize the pipeline
-    # generator = pipeline('text-generation', model='mistralai/Mixtral-8x7B-Instruct-v0.1')
+# Medical Report Image
+uploaded_image = st.sidebar.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
 
-    # Generate a response
-    # response = generator(f'As an AI Phlebotomist, provide information on {bloodType}', max_length=150)[0]['generated_text']
-
-    # return st.info(response)
+# Initialize the pipeline
+pipe = pipeline("question-answering", model="impira/layoutlm-document-qa")
 
 with st.form('myform'):
-  query_text = st.text_input('Enter your question:', '')
-  submitted = st.form_submit_button('Submit')
-    
-  # generate_response(query_text)
+    query_text = st.text_input('Enter your question:', '')
+    submitted = st.form_submit_button('Submit')
 
-# CSV file uploader in sidebar
-uploaded_file = st.sidebar.file_uploader("Choose a CSV file", type="csv")
+    if submitted and uploaded_image is not None:
+        # Open the image file
+        img = Image.open(uploaded_image)
+
+        # Use pytesseract to convert the image to text
+        text = pytesseract.image_to_string(img)
+
+        # Use the pipeline to answer the question
+        answer = pipe(question=query_text, context=text)
+
+        # Display the answer
+        st.write(answer['answer'])
+
+
+
 
 if uploaded_file is not None:
     # Read the CSV file
@@ -89,4 +104,3 @@ if uploaded_file is not None:
     st.pyplot(pairplot.fig)
 
 
-    
