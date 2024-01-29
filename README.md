@@ -1,4 +1,5 @@
-![Modern Logo for Blood Donation, cool, AI-type (1)](https://github.com/ShatilKhan/Hemo/assets/52494840/6f3953f4-4596-41b4-aed9-8dfc2aae1ed7)
+![Hemo](https://github.com/ShatilKhan/Hemo/assets/52494840/0ec6a69e-6c42-41c3-b520-443ef132d507)
+
 
 # Hemo🩸
 *"A single drop of blood can make a huge difference."* 🩸  
@@ -44,7 +45,7 @@ type: `document-question-answering`
 Link to Model on Hugging Face: https:[//huggingface.co/impira/layoutlm-document-qa](https://huggingface.co/impira/layoutlm-document-qa)
 
 It can only answer from a very clear pdf without watermark & all. Since most medical reports contain some form of WaterMark. We may need to use a more advance Open Source LLM. How ever installing & configuring larger Open Source LLMs takes a lot of time & internet speed. None of which I have at the moment. So currently I'll supply some sample Blood Test formats that users can use to test.
-The goal is to automatically suggest the user about how & when they can donate blood based on their health report.
+The goal is to automatically suggest the user about how & when they can donate blood based on their health report.  
 ***Note: most of all , using a smaller Open Source LLM makes the deployment process much easier & also uses less energy, hence also reducing CO2 emissions.***
 
 # Demo Video
@@ -57,11 +58,15 @@ I'm planning on using a fully open-source model instead of OpenAI because I'm la
 
 # Local Setup
 
-1.Install all the requirements
-``` pip install -r requirements.txt```
+1.Install all the requirements  
+```bash
+pip install -r requirements.txt
+```
 
-2.Run the Web App
-``` streamlit run hemo.py```
+2.Run the Web App   
+```bash
+streamlit run hemo.py
+```
 
 ***Note*** ***: You will need Teseract-OCR & Pytorch installed on your device.***
 
