@@ -21,7 +21,7 @@ uploaded_file = st.sidebar.file_uploader("Upload Blood Donor Dataset", type="csv
 uploaded_image = st.sidebar.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
 
 # Initialize the pipeline
-pipe = pipeline("question-answering", model="impira/layoutlm-document-qa")
+pipe = pipeline("document-question-answering", model="impira/layoutlm-document-qa")
 
 with st.form('myform'):
     query_text = st.text_input('Enter your question:', '')
@@ -32,13 +32,16 @@ with st.form('myform'):
         img = Image.open(uploaded_image)
 
         # Use pytesseract to convert the image to text
-        text = pytesseract.image_to_string(img)
+        # text = pytesseract.image_to_string(img)
 
         # Use the pipeline to answer the question
-        answer = pipe(question=query_text, context=text)
+        answer = pipe(question=query_text, image=img)
 
-        # Display the answer
-        st.write(answer['answer'])
+        # Get the best answer
+        best_answer = answer[0]['answer']
+
+        # Display the best answer
+        st.write(best_answer)
 
 
 
