@@ -38,6 +38,12 @@ Hemo has the follwoing features:
 
 # Features
 
+## Maps
+User can enter their current location & the web app will show nearby clinics/healthcare centers where they can donate blood.
+API: Google Places API
+![image](https://github.com/ShatilKhan/Hemo/assets/52494840/3dc57033-a543-4fad-b11b-2b1e641a2766)
+
+
 ## Medical Report Chat
 Upload your Medical Report & Chat with it to understand & be informed as a blood donor. It's not perfect as I'm using an Open Source LLM at the moment  
 Model: `impira/layoutlm-document-qa`  
