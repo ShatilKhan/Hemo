@@ -15,3 +15,6 @@ Class - The target attribute is a binary variable representing whether he/she do
 ## Citation
 
 Yeh,I-Cheng. (2008). Blood Transfusion Service Center. UCI Machine Learning Repository. https://doi.org/10.24432/C5GS39.
+
+## Blood Test Report
+This folder also contains a sample blood test report that we can use to chat using our layoutlm doucment chatbot. We can ask it questions on the test report.
