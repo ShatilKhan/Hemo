@@ -54,7 +54,7 @@ Check out the Video of how the web app creates a beautiful Pairplot & calculates
 
 https://github.com/ShatilKhan/Hemo/assets/52494840/886d656f-2afd-4a3c-8ba1-9c6372ba2e7f
 
-I'm planning on using a fully open-source model instead of OpenAI because I'm lazy & don't want to create an API key everytime I rune the app, plus I don't have any credits left :)
+I'm using a fully open-source model instead of OpenAI because I'm lazy & don't want to create an API key everytime I run the app, plus I don't have any credits left :)
 
 # Local Setup
 
