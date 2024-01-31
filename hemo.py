@@ -8,13 +8,14 @@ from transformers import pipeline
 import pytesseract
 from PIL import Image
 from st_paywall import add_auth
-import os
 from dotenv import load_dotenv
+import os
 
 
 
 st.set_page_config(page_title="💉 Hemo")
 st.title('💉 Hemo')
+st.subheader("Your AI Blood Health Expert")
 
 # Auth 
 # add_auth(required=False)
@@ -23,46 +24,70 @@ st.title('💉 Hemo')
 # st.write(st.session_state.email)
 # st.write(st.session_state.user_subscribed)
 
+
+
 # Set the path to the Tesseract OCR executable
 pytesseract.pytesseract.tesseract_cmd = r'C:\msys64\mingw64\bin\tesseract.exe' 
 
-# Google Places API URL
+# Google Places API URL- Converts lat.lng into map data
 url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
-# Load environment variables from .env file
+
+# Google Geocoding API URL - converts text input into lat & lng
+geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
+
+# Load the environment variables from the .env file
 load_dotenv()
 
-
+# Get the API key from the environment variable
+api_key = os.getenv("GOOGLE_API_KEY")
 
 # Create a text input field for the location
-location = st.text_input("Enter your current location:")
+location = st.sidebar.text_input("Enter your current location:")
 
 # Search & Display nearby clinics
 if location:
-    # Parameters for the API request
-    params = {
-        "location": location,  # Location name
-        "radius": 5000,  # Search radius in meters
-        "type": "hospital",  # Type of place to search for
-        "key": "" ,  # Google Places API key
+    # Parameters for the geocoding API request
+    geocode_params = {
+        "address": location,  # Location name
+        "key": api_key,  # Your Google Places API key
     }
 
-    # Send the API request
-    response = requests.get(url, params=params)
+    # Send the geocoding API request
+    geocode_response = requests.get(geocode_url, params=geocode_params)
 
-    # Parse the response
-    data = response.json()
+    # Parse the geocoding response
+    geocode_data = geocode_response.json()
 
-    # Print the response data
-    st.write(data)
+    # Extract the latitude and longitude from the geocoding response
+    lat = geocode_data['results'][0]['geometry']['location']['lat']
+    lng = geocode_data['results'][0]['geometry']['location']['lng']
 
-    # Extract the clinic locations from the response
+    # Parameters for the Places API request
+    places_params = {
+        "location": f"{lat},{lng}",  # Latitude and longitude
+        "radius": 5000,  # Search radius in meters
+        "type": "hospital",  # Type of place to search for
+        "key": api_key,  # Your Google Places API key
+    }
+
+    # Send the Places API request
+    places_response = requests.get(url, params=places_params)
+
+    # Parse the Places response
+    places_data = places_response.json()
+
+    # Extract the clinic locations from the Places response
     clinics = pd.DataFrame([{
         'lat': result['geometry']['location']['lat'],
         'lon': result['geometry']['location']['lng'],
-    } for result in data['results']])
+    } for result in places_data['results']])
 
     # Display the clinics on a map
+    st.subheader("Blood Donation Centers Near You")
     st.map(clinics)
+
+
+
 
 # CSV file uploader in sidebar
 uploaded_file = st.sidebar.file_uploader("Upload Blood Donor Dataset", type="csv")
@@ -125,8 +150,6 @@ if uploaded_file is not None:
 
     # Calculate & Display KPIs
 
-    
-
     # Percentage of Not Donated
 
     # Define the dictionary
@@ -146,6 +169,8 @@ if uploaded_file is not None:
 
     # Assuming not_donated_percentage is already calculated
     not_donated_percentage = not_donated_percentage / 100  # Convert the percentage to a fraction
+
+    st.subheader("Blood Donation Patterns")
 
     # Display the percentage as a progress bar
     st.progress(not_donated_percentage)
