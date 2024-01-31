@@ -43,7 +43,7 @@ if location:
         "location": location,  # Location name
         "radius": 5000,  # Search radius in meters
         "type": "hospital",  # Type of place to search for
-        "key": "AIzaSyDzScf7h3LKKQv552k_C3OJWpCXmfkLPeA" ,  # Google Places API key
+        "key": "" ,  # Google Places API key
     }
 
     # Send the API request
