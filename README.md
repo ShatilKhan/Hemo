@@ -13,13 +13,16 @@ Hemo is an AI Chatbot that helps Blood Donors learn more about Blood Donation &a
 [![License](https://img.shields.io/github/license/ShatilKhan/Hemo.svg)](https://github.com/Shatikhan/Hemo/blob/main/LICENSE)
 
 # Table of Contents
-1. [Hemo🩸](#hemo)
-2. [Scenario](#scenario)
-3. [Solution](#solution)
-4. [SDG](#sustainable-development-goals)
-5. [Features](#features)
-6. [Demo](#demo-video)
-7. [Setup](#local-setup)
+- [Hemo🩸](#hemo)
+- [Table of Contents](#table-of-contents)
+- [Scenario](#scenario)
+- [Solution](#solution)
+- [Sustainable Development Goals](#sustainable-development-goals)
+- [Features](#features)
+  - [Maps](#maps)
+  - [Medical Report Chat](#medical-report-chat)
+- [Blood Donation Pattern Prediction](#blood-donation-pattern-prediction)
+- [Local Setup](#local-setup)
 
 # Scenario
 Every 2 seconds, someone in the U.S. needs blood, and more than 50,000 units of blood are needed each year at Cedars-Sinai alone.While 38% of the American population is eligible to give blood, only 2% actually donates. While this is just the condition of America, the scene is much worse in under-developed & developing countries like Rwanda , Bangladesh & many more. It's become so scarce to find blood donors that Rwanda is even using drones to supply blood from big cities to remote villages. In Bangladesh alone there's thousands of people that need blood everday. Most people lack the awarness about blood donation activities. So even if there are hundreds of blood donation camps, we still don't get blood donors. Hence the need for proper encouragement & information on blood donation. Hemo aims to encourage the young population through Generative AI to give proper assessment on the donors blood, manage thier donor information & also predict Blood Donation Patterns using Generative AI.  
@@ -54,9 +57,9 @@ You can upload & ask about you're blood test report now.
 The goal is to automatically suggest the user about how & when they can donate blood based on their health report.  
 ***Note: most of all , using a smaller Open Source LLM makes the deployment process much easier & also uses less energy, hence also reducing CO2 emissions.***
 
-# Demo Video
+# Blood Donation Pattern Prediction
 
-Check out the Video of how the web app creates a beautiful Pairplot & calculates the percentage of people who did not donate blood:
+The web app creates a beautiful Pairplot & calculates the percentage of people who did not donate blood.
 
 https://github.com/ShatilKhan/Hemo/assets/52494840/886d656f-2afd-4a3c-8ba1-9c6372ba2e7f
 
@@ -69,11 +72,11 @@ I'm using a fully open-source model instead of OpenAI because I'm lazy & don't w
 pip install -r requirements.txt
 ```
 
-2.Run the Web App   
+2. Rename .env_sample to .env & add your Google Places API KEY
+
+3.Run the Web App   
 ```bash
 streamlit run hemo.py
 ```
 
 ***Note*** ***: You will need Teseract-OCR & Pytorch installed on your device.***
-
-### **`Currently Hemo can generate Pairplot from Blood Transfusion CSV data to predict Blood Donation Patterns.I'm currently working on adding the nearby blood donation center feature & automatic suggestion feature for different blood types`**

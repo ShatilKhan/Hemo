@@ -7,7 +7,6 @@ import seaborn as sns
 from transformers import pipeline
 import pytesseract
 from PIL import Image
-from st_paywall import add_auth
 from dotenv import load_dotenv
 import os
 
@@ -16,15 +15,6 @@ import os
 st.set_page_config(page_title="💉 Hemo")
 st.title('💉 Hemo')
 st.subheader("Your AI Blood Health Expert")
-
-# Auth 
-# add_auth(required=False)
-
-#after authentication, the email and subscription status is stored in session state
-# st.write(st.session_state.email)
-# st.write(st.session_state.user_subscribed)
-
-
 
 # Set the path to the Tesseract OCR executable
 pytesseract.pytesseract.tesseract_cmd = r'C:\msys64\mingw64\bin\tesseract.exe' 
