@@ -78,7 +78,11 @@ https://github.com/ShatilKhan/Hemo/assets/52494840/de2eda0e-2d74-4fdc-94ad-482cc
 I'm using a fully open-source model instead of OpenAI because I'm lazy & don't want to create an API key everytime I run the app, plus I don't have any credits left :)
 
 # Local Setup
-Install PyTorch , Tesseract-OCR on your device.
+
+## Prerequisites  
+Install `PyTorch` , `Tesseract-OCR` on your device.
+
+## Installation  
 
 1.Install all the requirements  
 ```bash
@@ -92,6 +96,4 @@ GOOGLE_API_KEY= "AI......"
 ```bash
 streamlit run hemo.py
 ```
-
-***Note*** ***: You will need Teseract-OCR & Pytorch installed on your device.***
 
