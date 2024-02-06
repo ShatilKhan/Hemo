@@ -96,4 +96,5 @@ GOOGLE_API_KEY= "AI......"
 ```bash
 streamlit run hemo.py
 ```
+![it-aint-much](https://github.com/ShatilKhan/Hemo/assets/52494840/d87b328e-b1ce-42cf-820b-93a825997595)
 
