@@ -1,5 +1,7 @@
 # Dataset for Blood Donation Prediction
 
+You can find a sample dataset for prediction as well as a sample png image for a blood test report [right here!](https://drive.google.com/drive/folders/1AOuk44G4SmzZtGJLhwb6Xhq39Y9sryfB?usp=drive_link)
+
 ## Blood Transfusion Service Center Data Set  
 Data taken from the Blood Transfusion Service Center in Hsin-Chu City in Taiwan.
 
