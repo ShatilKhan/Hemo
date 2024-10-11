@@ -80,7 +80,7 @@ if location:
 
 
 # CSV file uploader in sidebar
-uploaded_file = st.sidebar.file_uploader("Upload Blood Donor Dataset", type="csv")
+uploaded_file = st.sidebar.file_uploader("Upload Dataset", type="csv")
 
 # Medical Report Image
 uploaded_image = st.sidebar.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
