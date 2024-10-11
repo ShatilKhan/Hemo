@@ -21,7 +21,8 @@ Hemo is an AI Chatbot that helps Blood Donors learn more about Blood Donation &a
 - [Features](#features)
   - [Maps](#maps)
   - [Medical Report Chat](#medical-report-chat)
-- [Blood Donation Pattern Prediction](#blood-donation-pattern-prediction)
+  - [Blood Donation Pattern Prediction](#blood-donation-pattern-prediction)
+- [Demo](#demo-video)
 - [Local Setup](#local-setup)
 
 # Scenario
@@ -44,7 +45,8 @@ Hemo has the follwoing features:
 ## Maps
 User can enter their current location & the web app will show nearby clinics/healthcare centers where they can donate blood.
 API: Google Places API
-![image](https://github.com/ShatilKhan/Hemo/assets/52494840/3dc57033-a543-4fad-b11b-2b1e641a2766)
+![image](https://github.com/ShatilKhan/Hemo/assets/52494840/6d2a179c-0e69-4344-8dfb-908d354d25af)
+
 
 
 ## Medical Report Chat
@@ -57,26 +59,42 @@ You can upload & ask about you're blood test report now.
 The goal is to automatically suggest the user about how & when they can donate blood based on their health report.  
 ***Note: most of all , using a smaller Open Source LLM makes the deployment process much easier & also uses less energy, hence also reducing CO2 emissions.***
 
-# Blood Donation Pattern Prediction
-
+## Blood Donation Pattern Prediction
+You can upload a CSV data of blood donors & create a pattern prediction. This part uses the Pandas library & some python logic.
 The web app creates a beautiful Pairplot & calculates the percentage of people who did not donate blood.
+![image](https://github.com/ShatilKhan/Hemo/assets/52494840/75db5502-d2e1-411c-92b5-225ea473023a)
 
-https://github.com/ShatilKhan/Hemo/assets/52494840/886d656f-2afd-4a3c-8ba1-9c6372ba2e7f
+# Demo Video
+This is the full demo of all the mentioned features.
+First we see a location entered & immidiately nearby blood donation centers are shown.
+Then We enter a CSV data of blood donors & a pattern is predicted through pairplot
+Lastly we upload our Blood Test report & ask it general questions.
+
+
+https://github.com/ShatilKhan/Hemo/assets/52494840/de2eda0e-2d74-4fdc-94ad-482cc91dea59
+
+
 
 I'm using a fully open-source model instead of OpenAI because I'm lazy & don't want to create an API key everytime I run the app, plus I don't have any credits left :)
 
 # Local Setup
 
+## Prerequisites  
+Install `PyTorch` , `Tesseract-OCR` on your device.
+
+## Installation  
+
 1.Install all the requirements  
 ```bash
 pip install -r requirements.txt
+```  
+2. Rename `.env_sample` to `.env` & add your Google Places API KEY  
 ```
-
-2. Rename .env_sample to .env & add your Google Places API KEY
-
+GOOGLE_API_KEY= "AI......"
+```
 3.Run the Web App   
 ```bash
 streamlit run hemo.py
 ```
+![it-aint-much](https://github.com/ShatilKhan/Hemo/assets/52494840/d87b328e-b1ce-42cf-820b-93a825997595)
 
-***Note*** ***: You will need Teseract-OCR & Pytorch installed on your device.***
