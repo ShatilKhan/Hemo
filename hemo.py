@@ -33,7 +33,7 @@ api_key = os.getenv("GOOGLE_API_KEY")
 # Gemini
 ggi.configure(api_key = api_key)
 
-model = ggi.GenerativeModel("gemini-pro") 
+model = ggi.GenerativeModel("gemini-1.5-flash") 
 chat = model.start_chat()
 
 def LLM_Response(question):
