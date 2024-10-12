@@ -141,14 +141,14 @@ if uploaded_file is not None:
     sns.set_palette('icefire')
 
     # Set the background color to transparent
-    plt.rcParams['figure.facecolor'] = 'none'
-    plt.rcParams['axes.facecolor'] = 'none'
+    # plt.rcParams['figure.facecolor'] = 'none'
+    # plt.rcParams['axes.facecolor'] = 'none'
 
     # Set the text color to white
-    plt.rcParams['text.color'] = 'white'
-    plt.rcParams['axes.labelcolor'] = 'white'
-    plt.rcParams['xtick.color'] = 'white'
-    plt.rcParams['ytick.color'] = 'white'
+    plt.rcParams['text.color'] = 'red'
+    plt.rcParams['axes.labelcolor'] = 'red'
+    plt.rcParams['xtick.color'] = 'red'
+    plt.rcParams['ytick.color'] = 'red'
 
 # Replace data type to reduce memory
     if 'Class' in df.columns:
@@ -172,6 +172,8 @@ if uploaded_file is not None:
 
         # Display the percentage as text
         st.write(f"Percentage of not donated: {not_donated_percentage}%")
+        # Display the percentage as text
+        st.write(f"1=not donated , 2=donated")
 
 
         # Reduce sample size for plotting
