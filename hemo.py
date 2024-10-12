@@ -17,7 +17,7 @@ st.title('💉 Hemo')
 st.subheader("Your AI Blood Health Expert")
 
 # Set the path to the Tesseract OCR executable
-pytesseract.pytesseract.tesseract_cmd = r'C:\msys64\mingw64\bin\tesseract.exe' 
+# pytesseract.pytesseract.tesseract_cmd = r'C:\msys64\mingw64\bin\tesseract.exe' 
 
 # Google Places API URL- Converts lat.lng into map data
 url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
@@ -31,51 +31,44 @@ load_dotenv()
 # Get the API key from the environment variable
 api_key = os.getenv("GOOGLE_API_KEY")
 
-# Create a text input field for the location
+# Caching API requests
+@st.cache_data
+def geocode_location(location, api_key):
+    geocode_params = {
+        "address": location,
+        "key": api_key,
+    }
+    response = requests.get(geocode_url, params=geocode_params)
+    return response.json()
+
+@st.cache_data
+def get_nearby_clinics(lat, lng, api_key):
+    places_params = {
+        "location": f"{lat},{lng}",
+        "radius": 5000,
+        "type": "hospital",
+        "key": api_key,
+    }
+    response = requests.get(url, params=places_params)
+    return response.json()
+
+# Location input
 location = st.sidebar.text_input("Enter your current location:")
 
-# Search & Display nearby clinics
 if location:
-    # Parameters for the geocoding API request
-    geocode_params = {
-        "address": location,  # Location name
-        "key": api_key,  # Your Google Places API key
-    }
+    geocode_data = geocode_location(location, api_key)
+    if 'results' in geocode_data and len(geocode_data['results']) > 0:
+        lat = geocode_data['results'][0]['geometry']['location']['lat']
+        lng = geocode_data['results'][0]['geometry']['location']['lng']
+        places_data = get_nearby_clinics(lat, lng, api_key)
 
-    # Send the geocoding API request
-    geocode_response = requests.get(geocode_url, params=geocode_params)
+        clinics = pd.DataFrame([{
+            'lat': result['geometry']['location']['lat'],
+            'lon': result['geometry']['location']['lng'],
+        } for result in places_data.get('results', [])])
 
-    # Parse the geocoding response
-    geocode_data = geocode_response.json()
-
-    # Extract the latitude and longitude from the geocoding response
-    lat = geocode_data['results'][0]['geometry']['location']['lat']
-    lng = geocode_data['results'][0]['geometry']['location']['lng']
-
-    # Parameters for the Places API request
-    places_params = {
-        "location": f"{lat},{lng}",  # Latitude and longitude
-        "radius": 5000,  # Search radius in meters
-        "type": "hospital",  # Type of place to search for
-        "key": api_key,  # Your Google Places API key
-    }
-
-    # Send the Places API request
-    places_response = requests.get(url, params=places_params)
-
-    # Parse the Places response
-    places_data = places_response.json()
-
-    # Extract the clinic locations from the Places response
-    clinics = pd.DataFrame([{
-        'lat': result['geometry']['location']['lat'],
-        'lon': result['geometry']['location']['lng'],
-    } for result in places_data['results']])
-
-    # Display the clinics on a map
-    st.subheader("Blood Donation Centers Near You")
-    st.map(clinics)
-
+        st.subheader("Blood Donation Centers Near You")
+        st.map(clinics)
 
 
 
@@ -85,30 +78,32 @@ uploaded_file = st.sidebar.file_uploader("Upload Dataset", type="csv")
 # Medical Report Image
 uploaded_image = st.sidebar.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
 
-# Initialize the pipeline
-pipe = pipeline("document-question-answering", model="impira/layoutlm-document-qa")
+# Caching the pipeline initialization
+@st.cache_resource
+def load_pipeline():
+    return pipeline("document-question-answering", model="impira/layoutlm-document-qa")
 
 
 # Q&A form
-with st.form('myform'):
-    query_text = st.text_input('Enter your question:', '')
-    submitted = st.form_submit_button('Submit')
+if uploaded_image is not None:
+    pipe = load_pipeline()
 
-    if submitted and uploaded_image is not None:
-        # Open the image file
-        img = Image.open(uploaded_image)
+    with st.form('myform'):
+        query_text = st.text_input('Enter your question:', '')
+        submitted = st.form_submit_button('Submit')
 
-        # Use pytesseract to convert the image to text
-        # text = pytesseract.image_to_string(img)
+        if submitted:
+            # Open the image file
+            img = Image.open(uploaded_image)
 
-        # Use the pipeline to answer the question
-        answer = pipe(question=query_text, image=img)
+            # Use the pipeline to answer the question
+            answer = pipe(question=query_text, image=img)
 
-        # Get the best answer
-        best_answer = answer[0]['answer']
+            # Get the best answer
+            best_answer = answer[0]['answer']
 
-        # Display the best answer
-        st.write(best_answer)
+            # Display the best answer
+            st.write(best_answer)
 
 
 
@@ -131,46 +126,44 @@ if uploaded_file is not None:
     plt.rcParams['xtick.color'] = 'white'
     plt.rcParams['ytick.color'] = 'white'
 
-    # Create a pairplot
-    pairplot = sns.pairplot(df, hue='Class')
-
-    # Reset the settings to default after creating the plot
-    plt.rcParams.update(plt.rcParamsDefault)
-
+# Replace data type to reduce memory
+    if 'Class' in df.columns:
+        df['Class'] = df['Class'].astype('category')
 
     # Calculate & Display KPIs
+    if 'Class' in df.columns:
+        # Define the dictionary
+        class_dict = {'donated': 2, 'not donated': 1}
+        df['Class'] = df['Class'].replace(class_dict)
 
-    # Percentage of Not Donated
+        # Calculate the count of 'donated' and 'not donated'
+        class_counts = df['Class'].value_counts()
+        not_donated_percentage = round((class_counts[1] / class_counts.sum()) * 100, 2)
+        not_donated_fraction = not_donated_percentage / 100
 
-    # Define the dictionary
-    class_dict = {'donated': 2, 'not donated': 1}
+        st.subheader("Blood Donation Patterns")
 
-    # Replace the values
-    df['Class'] = df['Class'].replace(class_dict)
+        # Display the percentage as a progress bar
+        st.progress(not_donated_fraction)
 
-    # Calculate the count of 'donated' and 'not donated'
-    class_counts = df['Class'].value_counts()
-
-    # Calculate the percentage of 'not donated'
-    not_donated_percentage = (class_counts[1] / class_counts.sum()) * 100
-
-    # Round to two decimal places
-    not_donated_percentage = round(not_donated_percentage, 2)
-
-    # Assuming not_donated_percentage is already calculated
-    not_donated_percentage = not_donated_percentage / 100  # Convert the percentage to a fraction
-
-    st.subheader("Blood Donation Patterns")
-
-    # Display the percentage as a progress bar
-    st.progress(not_donated_percentage)
-
-    # Display the percentage as text
-    st.write(f"Percentage of not donated: {not_donated_percentage * 100}%")
-    
+        # Display the percentage as text
+        st.write(f"Percentage of not donated: {not_donated_percentage}%")
 
 
-    # Display the pairplot
-    st.pyplot(pairplot.fig)
+        # Reduce sample size for plotting
+        max_sample_size = 500  # Adjust this number based on resource limits
+        if len(df) > max_sample_size:
+            df_sampled = df.sample(n=max_sample_size, random_state=42)
+        else:
+            df_sampled = df
+
+        # Create a pairplot
+        pairplot = sns.pairplot(df_sampled, hue='Class')
+
+        # Reset the settings to default after creating the plot
+        plt.rcParams.update(plt.rcParamsDefault)
+
+        # Display the pairplot
+        st.pyplot(pairplot.fig)
 
 
