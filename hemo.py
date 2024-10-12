@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import requests
-from langchain import PromptTemplate
 import seaborn as sns
 from transformers import pipeline
 import pytesseract
@@ -134,7 +133,7 @@ if uploaded_file is not None:
     if 'Class' in df.columns:
         # Define the dictionary
         class_dict = {'donated': 2, 'not donated': 1}
-        df['Class'] = df['Class'].replace(class_dict)
+        df['Class'] = df['Class'].cat.rename_categories(class_dict)
 
         # Calculate the count of 'donated' and 'not donated'
         class_counts = df['Class'].value_counts()
