@@ -1,15 +1,16 @@
 # This file contains the required packages for this web app
 
-streamlit==1.39.0
-langchain==0.1.0
+streamlit
+langchain
 pandas
-matplotlib==3.4.3
+matplotlib
 seaborn
-transformers==4.37.2
+transformers
 pytesseract
-Pillow==8.3.2
+Pillow
 PyPDF2
 torch
 st-paywall
 requests
 python-dotenv
+google-generativeai

@@ -8,7 +8,7 @@ import pytesseract
 from PIL import Image
 from dotenv import load_dotenv
 import os
-
+import google.generativeai as ggi
 
 
 st.set_page_config(page_title="💉 Hemo")
@@ -29,6 +29,31 @@ load_dotenv()
 
 # Get the API key from the environment variable
 api_key = os.getenv("GOOGLE_API_KEY")
+
+# Gemini
+ggi.configure(api_key = api_key)
+
+model = ggi.GenerativeModel("gemini-pro") 
+chat = model.start_chat()
+
+def LLM_Response(question):
+    response = chat.send_message(question,stream=True)
+    return response
+
+user_quest = st.text_input("Ask a question:")
+btn = st.button("Ask")
+
+if btn and user_quest:
+    result = LLM_Response(user_quest)
+    st.subheader("Response : ")
+    for word in result:
+        st.text(word.text)
+
+# End Gemini
+
+
+
+
 
 # Caching API requests
 @st.cache_data
