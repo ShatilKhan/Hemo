@@ -19,6 +19,7 @@ Hemo is an AI Chatbot that helps Blood Donors learn more about Blood Donation &a
 - [Solution](#solution)
 - [Sustainable Development Goals](#sustainable-development-goals)
 - [Features](#features)
+  - [Agent](#agent)
   - [Maps](#maps)
   - [Medical Report Chat](#medical-report-chat)
   - [Blood Donation Pattern Prediction](#blood-donation-pattern-prediction)
@@ -41,6 +42,12 @@ Hemo has the follwoing features:
 ![image](https://github.com/ShatilKhan/Hemo/assets/52494840/31bf9b26-a706-4a67-98a4-6d99884570f1)
 
 # Features
+
+## Agent
+A smart agent based on the Google Gemini Large Language Model that can answer your question about blood donations & blood health.
+Example Questions: `How Often can I donate blood if I have low Blood Sugar` Or `Suggest treatments for Iron Deficiency`
+![hemo-agent](https://github.com/user-attachments/assets/7a73ee82-b86c-4a91-8fd9-243aba996809)
+
 
 ## Maps
 User can enter their current location & the web app will show nearby clinics/healthcare centers where they can donate blood.
