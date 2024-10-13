@@ -30,10 +30,11 @@ load_dotenv()
 # Get the API key from the environment variable
 api_key = os.getenv("GOOGLE_API_KEY")
 
+
 # Gemini
 ggi.configure(api_key = api_key)
 
-model = ggi.GenerativeModel("gemini-1.5-flash") 
+model = ggi.GenerativeModel("gemini-pro") 
 chat = model.start_chat()
 
 def LLM_Response(question):
