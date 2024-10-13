@@ -45,8 +45,8 @@ Hemo has the follwoing features:
 
 ## Agent
 A smart agent based on the Google Gemini Large Language Model that can answer your question about blood donations & blood health.
-Example Questions: `How Often can I donate blood if I have low Blood Sugar` Or `Suggest treatments for Iron Deficiency`
-Model: `Gemini-1.5-flash`
+Example Questions: `How Often can I donate blood if I have low Blood Sugar` Or `Suggest treatments for Iron Deficiency`  
+Model: `Gemini-1.5-flash`  
 Type: `multimodal-foundation-model`
 ![hemo-agent](https://github.com/user-attachments/assets/7a73ee82-b86c-4a91-8fd9-243aba996809)
 
@@ -54,7 +54,7 @@ Type: `multimodal-foundation-model`
 
 
 ## Maps
-User can enter their current location & the web app will show nearby clinics/healthcare centers where they can donate blood.
+User can enter their current location & the web app will show nearby clinics/healthcare centers where they can donate blood.  
 API: `Google Places API`
 ![image](https://github.com/ShatilKhan/Hemo/assets/52494840/6d2a179c-0e69-4344-8dfb-908d354d25af)
 
