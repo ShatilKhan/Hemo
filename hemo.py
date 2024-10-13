@@ -50,6 +50,11 @@ if btn and user_quest:
     for word in result:
         st.text(word.text)
 
+# Disclaimer
+st.markdown("""
+*Disclaimer: The information provided by the AI assistant is for educational purposes only and should not be considered medical advice. Please consult a healthcare professional for personalized medical guidance.*
+""")
+
 # End Gemini
 
 
