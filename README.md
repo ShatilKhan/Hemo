@@ -5,6 +5,7 @@
 *"A single drop of blood can make a huge difference."* 🩸  
 Hemo is an AI Chatbot that helps Blood Donors learn more about Blood Donation &amp; predict Blood Donation Patterns.
 
+[![Hits](https://hits.sh/github.com/ShatilKhan/Hemo/hits.svg)](https://hits.sh/github.com/ShatilKhan/Hemo/hits/)
 [![GitHub stars](https://img.shields.io/github/stars/ShatilKhan/Hemo.svg)](https://github.com/Shatikhan/Hemo/stargazers)
 [![GitHub watchers](https://img.shields.io/github/watchers/ShatilKhan/Hemo.svg)](https://github.com/Shatikhan/Hemo/watchers)
 [![Pull Requests](https://img.shields.io/github/issues-pr/ShatilKhan/Hemo.svg)](https://github.com/Shatikhan/Hemo/pulls)
