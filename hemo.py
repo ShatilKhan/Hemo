@@ -41,7 +41,7 @@ def LLM_Response(question):
     response = chat.send_message(question,stream=True)
     return response
 
-user_quest = st.text_input("Ask a question:")
+user_quest = st.text_input("Ask a question:", key="chat")
 btn = st.button("Ask")
 
 if btn and user_quest:
@@ -58,6 +58,47 @@ st.markdown("""
 # End Gemini
 
 
+# Find Donors Based on Location & Blood Group
+# Load donor data from the external file
+
+# Direct download link for the file hosted on Google Drive
+url = "https://drive.google.com/uc?export=download&id=1dHAnD4bIpIu6maRLFhA0OEw3zN2237dh"
+
+@st.cache_data  # Cache the data so it doesn't reload every time
+def load_donor_data():
+    return pd.read_excel(url)
+
+donor_data = load_donor_data()
+
+# Function to filter donors by blood group and location
+def filter_donors(blood_group, location):
+    # Adjust column names to match the new DataFrame structure
+    return donor_data[
+        (donor_data['Blood Group'] == blood_group) & 
+        (donor_data['Hometown'].str.contains(location, case=False))
+    ]
+
+
+# Sidebar inputs for blood group and location
+st.sidebar.header("Find a Blood Donor")
+blood_group = st.sidebar.selectbox("Select Blood Group:", ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"])
+location = st.sidebar.text_input("Enter your current location:", key="donor_loc")
+
+# Search button in sidebar
+if st.sidebar.button("Search Donors"):
+    if blood_group and location:
+        filtered_donors = filter_donors(blood_group, location)
+        if not filtered_donors.empty:
+            st.subheader("Available Donors:")
+            st.table(filtered_donors[['Name', 'Contact No.', 'Hometown']])
+        else:
+            st.write("No donors found for the specified blood group and location.")
+    else:
+        st.write("Please enter both a blood group and a location.")
+
+
+
+# End of Donor Finding Feature
 
 
 
@@ -83,7 +124,7 @@ def get_nearby_clinics(lat, lng, api_key):
     return response.json()
 
 # Location input
-location = st.sidebar.text_input("Enter your current location:")
+location = st.sidebar.text_input("Enter your current location:", key="location")
 
 if location:
     geocode_data = geocode_location(location, api_key)
@@ -119,7 +160,7 @@ if uploaded_image is not None:
     pipe = load_pipeline()
 
     with st.form('myform'):
-        query_text = st.text_input('Enter your question:', '')
+        query_text = st.text_input('Enter your question:', '' , key="img_qna")
         submitted = st.form_submit_button('Submit')
 
         if submitted:
